@@ -1,0 +1,25 @@
+##Playbook instalujący tomcata i robi deploy apki z gita##
+- hosts: node2
+  become: yes
+  tasks: 
+    - name: Instalowanie tomcata 
+      apt: 
+        name: tomcat9
+        state: latest
+    - name: Włączanie tomcata
+      systemd: 
+        name: tomcat
+        state: started
+        enabled: yes
+    - name: Klonowanie gita
+      git: 
+        repo: https://github.com/Mikzzer/Tomcat_deploy.git
+        dest: /vagrant/home/git
+    - name: deploy apki
+      copy:
+        src: /vagrant/home/git/Tomcat_deploy/war/SampleWebApp.war
+        dest: /app/tomcat/webapps
+    - name: Restart tomcata
+      systemd:
+        name: tomcat 
+        state: restarted
