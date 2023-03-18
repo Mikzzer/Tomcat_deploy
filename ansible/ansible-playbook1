@@ -1,0 +1,9 @@
+- hosts: nodes
+  become: yes
+  tasks:
+    - name: Instalowanie dockera 
+      apt: 
+        name: docker.io
+        update_cache: yes
+        state: latest
+        
