@@ -1,0 +1,11 @@
+- hosts: node1
+  become: yes
+  tasks: 
+    - name: Kopiowanie wara do tomcata
+      copy: 
+        src: /home/vagrant/Tomcat_deploy/war
+        dest: /opt/tomcat/webapps
+    - name: Restart tomcata
+      systemd:
+        name: tomcat
+        state: restarted
