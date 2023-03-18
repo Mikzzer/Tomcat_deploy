@@ -3,7 +3,7 @@
   tasks: 
     - name: Kopiowanie wara do tomcata
       copy: 
-        src: /home/vagrant/Tomcat_deploy/war
+        src: /home/vagrant/Tomcat_deploy/war/SampleWebApp.war
         dest: /opt/tomcat/webapps
     - name: Restart tomcata
       systemd:
