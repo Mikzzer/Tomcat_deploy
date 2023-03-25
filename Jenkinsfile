@@ -26,7 +26,7 @@ pipeline {
         stage("Startowanie kontenera") {
             steps{
                 script {
-                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-p 8080:8090 -v /home/vagrant/budowa/SampleWebApp.war:/usr/local/tomcat/webapps/myapp.war")
+                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-p 8090:8080 -v /home/vagrant/budowa/SampleWebApp.war:/usr/local/tomcat/webapps/myapp.war")
                 }
             }
         }
