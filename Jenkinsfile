@@ -1,10 +1,5 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:stable'
-            args '--group-add docker'
-        }
-    }
+    agent any
 
     environment {
         http = 'http://172.16.1.51:8080'
@@ -13,20 +8,21 @@ pipeline {
     stages {
         stage("kopiowanie wara") {
             steps {
-                sh 'sudo cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
+                sh 'cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
             }
         }
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    sudo docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                    sh 'chmod +x Dockerfile'
+                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
         }
         stage("Startowanie kontenera") {
             steps{
                 script {
-                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-p 8080:8090 -v /home/vagrant/war:/usr/local/tomcat/webapps/myapp.war")
+                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-u vagrant -p 8080:8090 -v /home/vagrant/war:/usr/local/tomcat/webapps/myapp.war")
                 }
             }
         }
