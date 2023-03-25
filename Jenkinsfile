@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-def http = new groovyx.net.http.HTTPBuilder('http://172.16.1.51:8080/SampleWebApp')
+
 
 
     stages {
@@ -11,9 +11,11 @@ def http = new groovyx.net.http.HTTPBuilder('http://172.16.1.51:8080/SampleWebAp
             }
         }
         stage("Testowanie połączenia"){
-            steps{
+            steps {
                 @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
                 script{
+                    def http = new groovyx.net.http.HTTPBuilder('http://172.16.1.51:8080/SampleWebApp')
+                    
                     http.request(GET, TEXT) { req ->
                         response.succes = { resp, reader ->
                             assert resp.status == 200
