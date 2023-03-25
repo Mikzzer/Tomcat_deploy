@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage("Odpalanie skryptu"){
             steps{
-                python3 'skrypt.py'
+                python3 '/home/vagrant/pliczki/workspace/Diploy_proba'
             }
         }
     }
