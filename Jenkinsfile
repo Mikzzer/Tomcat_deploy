@@ -17,7 +17,7 @@ pipeline {
                     def response = sh(returnStdout: true, script: "curl --head ${http}")
                     def obcieta = response.trim()
                     if(obcieta =~ /200/) {
-                        echo "Gituwa połączenie"
+                        echo "Gituwa połączenie Kod: ${obcieta}"
                     }else {
                         echo
                     }
