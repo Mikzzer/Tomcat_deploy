@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:stable'
+            args '--group-add docker'
+        }
+    }
 
     environment {
         http = 'http://172.16.1.51:8080'
@@ -14,7 +19,7 @@ pipeline {
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                    sudo docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
         }
