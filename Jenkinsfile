@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("kopiowanie wara") {
             steps {
-                sh 'cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
+                sh 'sudo cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
             }
         }
         stage("Budowanie obrazu dockera ") {
