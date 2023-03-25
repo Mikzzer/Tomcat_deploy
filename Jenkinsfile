@@ -33,7 +33,7 @@ pipeline {
         stage("Testowanie połączenia z serverem") {
             steps {
                 script {
-                    def response = sh(returnStdout: true, script: "curl --head ${http}/SampleWebApp | grep HTTP")
+                    def response = sh(returnStdout: true, script: "curl --head ${http}/SampleWebApp/ | grep HTTP")
                     def obcieta = response.trim()
                     if(obcieta =~ /200/) {
                         echo "Gituwa połączenie Kod: ${obcieta}"
