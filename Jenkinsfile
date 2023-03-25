@@ -9,10 +9,11 @@ pipeline {
         }
         stage("Testowanie połączenia") {
             steps {
-                // Pobranie modułu HTTPBuilder
-                @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
+                script {
+                    // Pobranie modułu HTTPBuilder
+                    @Grab(group='org.codehaus.groovy.modules.http-builder', module='http-builder', version='0.7.1')
 
-                // Wykonanie zapytania GET i sprawdzenie odpowiedzi
+                    // Wykonanie zapytania GET i sprawdzenie odpowiedzi
                     def http = new groovyx.net.http.HTTPBuilder('http://172.16.1.51:8080/SampleWebApp')
                     
                     http.request(GET, TEXT) { req ->
@@ -21,6 +22,7 @@ pipeline {
                             assert reader.text.contains("DOMENA")
                         }
                     }
+                }
             }
         }
     }
