@@ -15,7 +15,13 @@ pipeline {
             steps {
                 script {
                     def response = sh(returnStdout: true, script: 'curl --head http://172.16.1.51:8080/SampleWebApp')
-                    echo response.trim()
+                    def obcieta = response.trim()
+                    if(obcieta =~ /200/) {
+                        echo "Gituwa połączenie"
+                    }else {
+                        echo "chujnia"
+                    }
+                    
                 }
             }
         }
