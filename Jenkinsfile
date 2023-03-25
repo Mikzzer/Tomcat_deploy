@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("kopiowanie wara") {
             steps {
-                sh 'cp /home/vagrant/pliczki/workspace/Docker_deployTomcat/*.war /home/vagrant/budowa'
+                sh 'cp /home/vagrant/pliczki/workspace/Docker_deployTomcat/war/*.war /home/vagrant/budowa'
             }
         }
         stage("kopiowanie dockera") {
