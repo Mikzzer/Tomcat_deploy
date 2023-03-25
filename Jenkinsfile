@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone repository') {
             steps {
-                git clone 'https://github.com/Mikzzer/Tomcat_deploy.git'
+               bat "git clone https://github.com/Mikzzer/Tomcat_deploy.git"
             }
         }
     }
