@@ -14,14 +14,14 @@ pipeline {
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    docker.build("TomcatApka:${env.BUILD_NUMBER}", "-f Dockerfile .")
+                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
         }
         stage("Startowanie kontenera") {
             steps{
                 script {
-                    docker.image("TomcatApka:${env.BUILD_NUMBER}").run("-p 8080:8090 -v /home/vagrant/war:/usr/local/tomcat/webapps/myapp.war")
+                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-p 8080:8090 -v /home/vagrant/war:/usr/local/tomcat/webapps/myapp.war")
                 }
             }
         }
