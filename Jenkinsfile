@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        http = 'http://172.16.1.51:8080'
+        http = 'http://172.16.1.51:8090'
     }
 
     stages {
