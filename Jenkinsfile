@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage("kopiowanie wara") {
             steps {
-                sh 'cp /home/vagrant/pliczki/workspace/Docker_deployTomcat/war/SampleWebApp.war /home/vagrant/budowa'
+                sh 'cp /home/vagrant/pliczki/workspace/Docker_deployTomcat/war/SampleWebApp.war /home/vagrant/budowa/'
             }
         }
         stage("kopiowanie dockera") {
@@ -19,7 +19,7 @@ pipeline {
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile /home/vagrant/budowa/SampleWebApp.war")
+                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile /home/vagrant/budowa/.")
                 }
             }
         }
