@@ -16,11 +16,12 @@ pipeline {
                 script {
                     def response = sh(returnStdout: true, script: 'curl --head http://172.16.1.51:8080')
                     def obcieta = response.trim()
-                    if(obcieta =~ /200/) {
-                        echo "Gituwa połączenie"
-                    }else {
-                        echo "chujnia"
-                    }
+                    echo obcieta
+                    // if(obcieta =~ /200/) {
+                    //     echo "Gituwa połączenie"
+                    // }else {
+                    //     echo "chujnia"
+                    // }
                     
                 }
             }
