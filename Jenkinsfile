@@ -14,7 +14,7 @@ pipeline {
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile /home/vagrant/pliczki/workspace/Docker_deployTomcat/Dockerfile ")
+                    docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
         }
