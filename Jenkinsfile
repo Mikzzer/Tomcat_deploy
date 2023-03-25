@@ -14,7 +14,7 @@ pipeline {
         stage("Testowanie połączenia z serverem") {
             steps {
                 script {
-                    def response = sh(returnStdout: true, script: 'curl --head '${http})
+                    def response = sh(returnStdout: true, script: 'curl --head http://172.16.1.51:8080/SampleWebApp')
                     def obcieta = response.trim()
                     if(obcieta =~ /200/) {
                         echo "Gituwa połączenie"
