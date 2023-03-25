@@ -8,13 +8,12 @@ pipeline {
     stages {
         stage("kopiowanie wara") {
             steps {
-                sh 'cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
+                sh 'sudo cp /home/vagrant/pliczki/workspace/Diploy_proba/war/* /home/vagrant/budowa'
             }
         }
         stage("Budowanie obrazu dockera ") {
             steps{
                 script {
-                    sh 'chmod +x Dockerfile'
                     docker.build("tomcatapka:${env.BUILD_NUMBER}", "-f Dockerfile .")
                 }
             }
@@ -22,7 +21,7 @@ pipeline {
         stage("Startowanie kontenera") {
             steps{
                 script {
-                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-u vagrant -p 8080:8090 -v /home/vagrant/war:/usr/local/tomcat/webapps/myapp.war")
+                    docker.image("tomcatapka:${env.BUILD_NUMBER}").run("-p 8080:8090 -v /home/vagrant/budowa/SampleWebApp.war:/usr/local/tomcat/webapps/myapp.war")
                 }
             }
         }
