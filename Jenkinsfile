@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        http = 'http://172.16.1.51:8090'
+        http = 'http://172.16.1.51:8090/SampleWebApp/'
     }
 
     stages {
@@ -33,7 +33,7 @@ pipeline {
         stage("Testowanie połączenia z serverem") {
             steps {
                 script {
-                    def response = sh(returnStdout: true, script: "curl --head ${http}/SampleWebApp/ | grep HTTP")
+                    def response = sh(returnStdout: true, script: "curl --head ${http} | grep HTTP")
                     def obcieta = response.trim()
                     if(obcieta =~ /200/) {
                         echo "Gituwa połączenie Kod: ${obcieta}"
