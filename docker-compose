@@ -1,0 +1,31 @@
+##Dla wordpresa##
+version: '3'
+
+services:
+  wordpress: 
+    image: wordpress
+    restart: always
+    ports:
+      - 8090:80
+    environment:
+      - DB_HOST=db
+      - USER=mwypa
+      - PASSWORD=123
+      - DB_NAME=baza3
+    volumes:
+      - wordpress:/var/www/html
+    links:
+      - db:db
+  db:
+    image: mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=baza3
+      - MYSQL_USER=mwypa
+      - MYSQL_PASSWORD=123
+      - MYSQL_RANDOM_ROOT_PASSWORD='1'
+    volumes:
+      - db:/var/lib/mysql
+volumes:
+  wordpress:
+  db:
